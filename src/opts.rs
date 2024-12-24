@@ -38,8 +38,23 @@ impl Display for OutputFormat {
 pub enum SubCommand {
     #[command(name = "csv", about = "csv to json")]
     Csv(CsvOpts),
+    #[command(name = "genpass", about = "generate password")]
+    Genpass(GenpassOpts),
 }
 
+#[derive(Debug, Parser)]
+pub struct GenpassOpts {
+    #[arg(short, long, default_value_t = 16)]
+    pub length: u8,
+    #[arg(long, default_value_t = false)]
+    pub uppercase: bool,
+    #[arg(long, default_value_t = false)]
+    pub lowercase: bool,
+    #[arg(long, default_value_t = true)]
+    pub number: bool,
+    #[arg(long, default_value_t = true)]
+    pub symbol: bool,
+}
 fn verify_file_file(file_name: &str) -> Result<String, String> {
     if Path::new(file_name).exists() {
         Ok(file_name.to_string())
