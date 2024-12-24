@@ -1,5 +1,5 @@
 use clap::Parser;
-use template::{Opts, SubCommand, process_csv};
+use rust_tools_cli::{Opts, SubCommand, process_csv};
 
 fn main() -> anyhow::Result<()> {
     let opts = Opts::parse();

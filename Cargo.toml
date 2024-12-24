@@ -1,5 +1,6 @@
+cargo-features = ["edition2024"]
 [package]
-name = "template"
+name = "rust-tools-cli"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
