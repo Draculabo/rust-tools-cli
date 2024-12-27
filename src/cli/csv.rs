@@ -1,12 +1,13 @@
 use std::fmt::Display;
-use std::path::Path;
 use std::str::FromStr;
 
 use clap::Parser;
 
+use crate::cli::verify_file;
+
 #[derive(Debug, Parser)]
 pub struct CsvOpts {
-    #[arg(short, long, value_parser = verify_file_file)]
+    #[arg(short, long, value_parser = verify_file)]
     pub input: String,
     #[arg(short, long)]
     pub output: Option<String>,
@@ -53,13 +54,6 @@ impl Display for OutputFormat {
     }
 }
 
-fn verify_file_file(file_name: &str) -> Result<String, String> {
-    if Path::new(file_name).exists() {
-        Ok(file_name.to_string())
-    } else {
-        Err(format!("File not found: {}", file_name))
-    }
-}
 fn parse_output_format(format: &str) -> Result<OutputFormat, anyhow::Error> {
     format.parse()
 }
