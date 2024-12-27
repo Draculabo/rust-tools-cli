@@ -1,9 +1,12 @@
+mod base64;
 mod csv;
 mod genpass;
 use clap::Parser;
 pub use csv::{CsvOpts, OutputFormat};
 pub use genpass::GenpassOpts;
 use std::path::Path;
+
+pub use base64::{Base64Format, Base64SubCommand};
 
 #[derive(Debug, Parser)]
 #[command(name = "rust-tools-cli", author = "draculabo", version, about, long_about = None)]
@@ -18,6 +21,8 @@ pub enum SubCommand {
     Csv(CsvOpts),
     #[command(name = "genpass", about = "generate password")]
     Genpass(GenpassOpts),
+    #[command(subcommand, about = "base64 encode")]
+    Base64(Base64SubCommand),
 }
 
 pub fn verify_file(file_name: &str) -> Result<String, String> {

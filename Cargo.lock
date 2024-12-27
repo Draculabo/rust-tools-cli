@@ -1285,6 +1285,7 @@ name = "rust-tools-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "base64",
  "clap",
  "csv",
  "duckdb",

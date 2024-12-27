@@ -1,5 +1,8 @@
 use clap::Parser;
-use rust_tools_cli::{Opts, SubCommand, process_csv, process_genpass};
+use rust_tools_cli::{
+    Base64SubCommand, Opts, SubCommand, process_base64_decode, process_base64_encode, process_csv,
+    process_genpass,
+};
 
 fn main() -> anyhow::Result<()> {
     let opts = Opts::parse();
@@ -21,6 +24,14 @@ fn main() -> anyhow::Result<()> {
                 opts.length,
             )?;
         }
+        SubCommand::Base64(sub_cmd) => match sub_cmd {
+            Base64SubCommand::Encode(opts) => {
+                process_base64_encode(opts.input, opts.format)?;
+            }
+            Base64SubCommand::Decode(opts) => {
+                process_base64_decode(opts.input, opts.format)?;
+            }
+        },
     }
     Ok(())
 }
