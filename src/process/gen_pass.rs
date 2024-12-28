@@ -16,19 +16,19 @@ pub fn process_genpass(
     let mut rng = thread_rng();
     if uppercase {
         chars.extend(UPPER);
-        password.push(UPPER.choose(&mut rng).unwrap().clone());
+        password.push(*UPPER.choose(&mut rng).unwrap());
     }
     if lowercase {
         chars.extend(LOWER);
-        password.push(LOWER.choose(&mut rng).unwrap().clone());
+        password.push(*LOWER.choose(&mut rng).unwrap());
     }
     if number {
         chars.extend(NUMBER);
-        password.push(NUMBER.choose(&mut rng).unwrap().clone());
+        password.push(*NUMBER.choose(&mut rng).unwrap());
     }
     if symbol {
         chars.extend(SYMBOL);
-        password.push(SYMBOL.choose(&mut rng).unwrap().clone());
+        password.push(*SYMBOL.choose(&mut rng).unwrap());
     }
     for _ in 0..(length - password.len() as u8) {
         let c = chars.choose(&mut rng).unwrap();
